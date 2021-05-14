@@ -193,6 +193,104 @@
           }
         }
       }
+    },
+    "strict-app": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:application": {
+          "strict": true
+        }
+      },
+      "root": "projects/strict-app",
+      "sourceRoot": "projects/strict-app/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/strict-app",
+            "index": "projects/strict-app/src/index.html",
+            "main": "projects/strict-app/src/main.ts",
+            "polyfills": "projects/strict-app/src/polyfills.ts",
+            "tsConfig": "projects/strict-app/tsconfig.app.json",
+            "assets": [
+              "projects/strict-app/src/favicon.ico",
+              "projects/strict-app/src/assets"
+            ],
+            "styles": [
+              "projects/strict-app/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/strict-app/src/environments/environment.ts",
+                  "with": "projects/strict-app/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "strict-app:build:production"
+            },
+            "development": {
+              "browserTarget": "strict-app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "strict-app:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/strict-app/src/test.ts",
+            "polyfills": "projects/strict-app/src/polyfills.ts",
+            "tsConfig": "projects/strict-app/tsconfig.spec.json",
+            "karmaConfig": "projects/strict-app/karma.conf.js",
+            "assets": [
+              "projects/strict-app/src/favicon.ico",
+              "projects/strict-app/src/assets"
+            ],
+            "styles": [
+              "projects/strict-app/src/styles.css"
+            ],
+            "scripts": []
+          }
+        }
+      }
     }
   },
   "defaultProject": "basic-app"
