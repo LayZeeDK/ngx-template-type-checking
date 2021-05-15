@@ -12,8 +12,9 @@ import { User } from './user';
 export class UserComponent {
   user: User = {
     address: {
-      city: 'Copenhagen',
+      city: 'Pune',
     },
+    name: 'Santosh',
   };
 }
 
