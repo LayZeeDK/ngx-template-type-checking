@@ -15,12 +15,12 @@ export class CounterComponent {
   countChange = new EventEmitter<number>();
 
   onDecrement(): void {
-    this.count += 1;
+    this.count -= 1;
     this.countChange.emit(this.count);
   }
 
   onIncrement(): void {
-    this.count -= 1;
+    this.count += 1;
     this.countChange.emit(this.count);
   }
 }
