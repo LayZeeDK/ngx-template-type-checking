@@ -1,16 +1,19 @@
-import { ChangeDetectionStrategy, Component, Input, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, NgModule, Output } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-button',
   styles: [':host { display: block; }'],
-  template: '<button>Button #{{ buttonNumber }}: {{ text }}</button>',
+  template:
+    '<button (click)="onClick($event)"><ng-content></ng-content></button>',
 })
 export class ButtonComponent {
-  @Input()
-  buttonNumber = 0;
-  @Input()
-  text = 'Push me';
+  @Output()
+  appClick = new EventEmitter<void>();
+
+  onClick(event: InputEvent): void {
+    this.appClick.emit();
+  }
 }
 
 @NgModule({
