@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgModule } from '@angular/core';
 
 import { MapScam } from './map.sfc';
 import { User } from './user';
@@ -7,15 +7,11 @@ import { User } from './user';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-user',
   styles: [':host { display: block; }'],
-  template: '<app-map [city]="user.address.city"></app-map>',
+  template: '<app-map [city]="user?.address?.city ?? null"></app-map>',
 })
 export class UserComponent {
-  user: User = {
-    address: {
-      city: 'Pune',
-    },
-    name: 'Santosh',
-  };
+  @Input()
+  user: User | null = null;
 }
 
 @NgModule({

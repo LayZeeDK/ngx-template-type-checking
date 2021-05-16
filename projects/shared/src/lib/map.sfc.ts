@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component, Input, NgModule } from '@angular/co
 })
 export class MapComponent {
   @Input()
-  city = '';
+  city: string | null = null;
 }
 
 @NgModule({
