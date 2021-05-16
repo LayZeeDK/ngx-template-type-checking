@@ -1,13 +1,16 @@
-import { ChangeDetectionStrategy, Component, NgModule } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, NgModule } from '@angular/core';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-message-form',
   styles: [':host { display: block; }'],
-  template: `<input #userControl />
+  template: `<input #userControl value="message" />
     <button (click)="userControl.rows = 4">4 rows</button>`,
 })
-export class MessageFormComponent {}
+export class MessageFormComponent {
+  @Input()
+  message = '';
+}
 
 @NgModule({
   declarations: [MessageFormComponent],

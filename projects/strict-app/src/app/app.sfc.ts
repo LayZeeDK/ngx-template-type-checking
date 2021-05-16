@@ -7,7 +7,7 @@ import { CounterScam, MessageFormScam, ReadonlyCounterScam, UserListScam } from 
   template: `<app-counter count="1"></app-counter>
     <app-readonly-counter [count]="1"></app-readonly-counter>
     <app-user-list></app-user-list>
-    <app-message-form></app-message-form>`,
+    <app-message-form [message]="2021"></app-message-form>`,
 })
 export class AppComponent {}
 
