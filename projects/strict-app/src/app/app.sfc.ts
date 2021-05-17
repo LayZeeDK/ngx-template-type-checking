@@ -1,6 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule } from '@angular/core';
-import { CounterScam, MessageFormScam, ReadonlyCounterScam, User, UserListScam, UserScam } from '@workspace/shared';
+import {
+  ButtonScam,
+  CounterScam,
+  MessageFormScam,
+  ReadonlyCounterScam,
+  User,
+  UserListScam,
+  UserScam,
+} from '@workspace/shared';
 import { Observable, of } from 'rxjs';
 
 @Component({
@@ -13,11 +21,13 @@ import { Observable, of } from 'rxjs';
     ></app-readonly-counter>
     <app-user-list [users]="users$ | async"></app-user-list>
     <app-user [user]="{ address: {}, name: 'Lars' }"></app-user>
-    <app-message-form [message]="2021"></app-message-form>`,
+    <app-message-form [message]="2021"></app-message-form>
+    <app-button [text]="buttonText$ | async"></app-button>`,
 })
 export class AppComponent {
-  count: string = '0';
+  #count: string = '0';
 
+  buttonText$ = of('Touch me');
   users$: Observable<readonly User[]> = of([
     {
       address: {
@@ -40,7 +50,7 @@ export class AppComponent {
   ]);
 
   onCountChange(count: string): void {
-    this.count = count;
+    this.#count = count;
   }
 }
 
@@ -48,6 +58,7 @@ export class AppComponent {
   declarations: [AppComponent],
   imports: [
     CommonModule,
+    ButtonScam,
     CounterScam,
     MessageFormScam,
     ReadonlyCounterScam,
