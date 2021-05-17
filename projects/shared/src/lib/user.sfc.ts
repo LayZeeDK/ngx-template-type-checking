@@ -7,11 +7,16 @@ import { User } from './user';
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-user',
   styles: [':host { display: block; }'],
-  template: '<app-map [city]="user?.address?.city ?? null"></app-map>',
+  template: `<app-map [city]="user?.address?.city ?? null"></app-map>
+    <p>Name: {{ trim(user?.name) }}</p>`,
 })
 export class UserComponent {
   @Input()
   user: User | null = null;
+
+  trim(text: string): string {
+    return text.trim();
+  }
 }
 
 @NgModule({
